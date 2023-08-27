@@ -86,7 +86,56 @@
         .internationalPill:hover {
           background-color: lightgray;
         }
+
+        .fab-container {
+          position: fixed;
+          top: 40px;
+          left: 20px;
+          z-index: 9999;
+        }
+
+        .fab-button {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background-color: #ffffff;
+          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+          border: none;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .fab-button:hover {
+          background-color: rgb(68, 68, 68);
+        }
+
+        .floating-container {
+          position: fixed;
+          top: 60px;
+          left: 200px;
+          transform: translateX(-50%);
+          background-color: #ffffff;
+          border-radius: 2px;
+          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+          padding: 2px 10px;
+          display: none;
+          font-size: small;
+          z-index: 9998;
+        }
+
+        .floating-container p {
+          color: #515151;
+        }
       </style>
+
+      <script>
+        function toggleContainer() {
+          const container = document.getElementById('floating-container');
+          container.style.display = container.style.display === 'none' ? 'block' : 'none';
+        }
+      </script>
 
       <!--MapBox token-->
       <script>
@@ -126,18 +175,29 @@
     <!-- Kepler.gl map will be placed here-->
   </div>
 
-
+  <!--Data Filters-->
   <div class="domesticPill">
     <i class="material-icons" style="vertical-align: middle; margin-right: 5px; font-size: 15px;">flight_takeoff</i>
     Show Domestic
   </div>
-  
+
   <div class="internationalPill">
     <i class="material-icons" style="vertical-align: middle; margin-right: 5px; font-size: 15px;">flight_takeoff</i>
     Show International
   </div>
 
+  <!--Info Icon-->
+  <!-- Add the button to the top left corner of the page -->
+  <div class="fab-container">
+    <button class="fab-button" onclick="toggleContainer()">
+      <i class="material-icons" style="font-size: 15px;">info</i>
+    </button>
+  </div>
 
+  <!-- Add the container to show/hide when the button is clicked -->
+  <div class="floating-container" id="floating-container">
+    <p>Vietnam Airlines Flight Paths by Charlemagne Losaria. Data as of July 27 2023.</p>
+  </div>
 
   <!-- Load our React component. -->
   <script>
@@ -284,6 +344,7 @@
       };
 
 
+      /*Filter International Flights*/
       // Get the button element
       const internationalButton = document.querySelector('.internationalPill');
 
@@ -302,7 +363,7 @@
         }));
       });
 
-
+      /*Filter Domestic Flights*/
       // Get the button element
       const domesticButton = document.querySelector('.domesticPill');
 
