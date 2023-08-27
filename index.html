@@ -16,7 +16,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
 
-
   <!-— facebook open graph tags -->
     <meta property="og:url" content="http://kepler.gl/" />
     <meta property="og:title" content="Large-scale WebGL-powered Geospatial Data Visualization Tool" />
@@ -52,6 +51,12 @@
         body {
           font-family: 'Be Vietnam', sans-serif;
         }
+
+        .logo {
+  position:fixed;
+  top: 0;
+  left: 0;
+}
 
         .domesticPill {
           position: fixed;
@@ -89,7 +94,7 @@
 
         .fab-container {
           position: fixed;
-          top: 40px;
+          top: 20px;
           left: 20px;
           z-index: 9999;
         }
@@ -114,8 +119,7 @@
         .floating-container {
           position: fixed;
           top: 60px;
-          left: 200px;
-          transform: translateX(-50%);
+          left: 30px;
           background-color: #ffffff;
           border-radius: 2px;
           box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
@@ -130,12 +134,7 @@
         }
       </style>
 
-      <script>
-        function toggleContainer() {
-          const container = document.getElementById('floating-container');
-          container.style.display = container.style.display === 'none' ? 'block' : 'none';
-        }
-      </script>
+
 
       <!--MapBox token-->
       <script>
@@ -174,7 +173,6 @@
   <div id="app">
     <!-- Kepler.gl map will be placed here-->
   </div>
-
   <!--Data Filters-->
   <div class="domesticPill">
     <i class="material-icons" style="vertical-align: middle; margin-right: 5px; font-size: 15px;">flight_takeoff</i>
@@ -195,9 +193,18 @@
   </div>
 
   <!-- Add the container to show/hide when the button is clicked -->
-  <div class="floating-container" id="floating-container">
-    <p>Vietnam Airlines Flight Paths by Charlemagne Losaria. Data as of July 27 2023.</p>
-  </div>
+    <div class="floating-container" id="floating-container">
+      <p>Vietnam Airlines Flight Paths. Data as of July 27 2023. <br>Web Map by Charlemagne Losaria. <a href="https://cmlosaria.webflow.io">See more</a></p>
+    </div>
+
+    <script>
+      function toggleContainer() {
+        const container = document.getElementById('floating-container');
+        container.style.display = container.style.display === 'none' ? 'block' : 'none';
+      }
+    </script>
+
+
 
   <!-- Load our React component. -->
   <script>
@@ -250,7 +257,7 @@
             "svg",
             {
               className: "kepler_gl__logo",
-              width: "107px",
+              width: "5px",
               height: "21px",
               viewBox: "0 0 124 24"
             },
@@ -338,7 +345,7 @@
       const config = {
         "version": "v1", "config": {
           "visState": {
-            "filters": [{ "dataId": ["2vy7gdzae"], "id": "vpzrndmst", "name": ["type"], "type": "multiSelect", "value": ["Domestic"], "enlarged": false, "plotType": "histogram", "animationWindow": "free", "yAxis": null, "speed": 1 }], "layers": [{ "id": "cr14bm", "type": "point", "config": { "dataId": "2vy7gdzae", "label": "origin", "color": [255, 248, 51], "highlightColor": [252, 242, 26, 255], "columns": { "lat": "origin_lat", "lng": "origin_long", "altitude": null }, "isVisible": true, "visConfig": { "radius": 15, "fixedRadius": false, "opacity": 0.8, "outline": false, "thickness": 2, "strokeColor": null, "colorRange": { "name": "Global Warming", "type": "sequential", "category": "Uber", "colors": ["#5A1846", "#900C3F", "#C70039", "#E3611C", "#F1920E", "#FFC300"] }, "strokeColorRange": { "name": "Global Warming", "type": "sequential", "category": "Uber", "colors": ["#5A1846", "#900C3F", "#C70039", "#E3611C", "#F1920E", "#FFC300"] }, "radiusRange": [0, 50], "filled": true }, "hidden": false, "textLabel": [] }, "visualChannels": { "colorField": null, "colorScale": "quantile", "strokeColorField": null, "strokeColorScale": "quantile", "sizeField": null, "sizeScale": "linear" } }, { "id": "fwq86uk", "type": "point", "config": { "dataId": "2vy7gdzae", "label": "dest", "color": [248, 149, 112], "highlightColor": [252, 242, 26, 255], "columns": { "lat": "dest_lat", "lng": "dest_long", "altitude": null }, "isVisible": true, "visConfig": { "radius": 10, "fixedRadius": false, "opacity": 0.8, "outline": false, "thickness": 2, "strokeColor": null, "colorRange": { "name": "Global Warming", "type": "sequential", "category": "Uber", "colors": ["#5A1846", "#900C3F", "#C70039", "#E3611C", "#F1920E", "#FFC300"] }, "strokeColorRange": { "name": "Global Warming", "type": "sequential", "category": "Uber", "colors": ["#5A1846", "#900C3F", "#C70039", "#E3611C", "#F1920E", "#FFC300"] }, "radiusRange": [0, 50], "filled": true }, "hidden": false, "textLabel": [{ "field": { "name": "destination_iata", "type": "string" }, "color": [255, 255, 255], "size": 18, "offset": [0, 0], "anchor": "start", "alignment": "center" }] }, "visualChannels": { "colorField": null, "colorScale": "quantile", "strokeColorField": null, "strokeColorScale": "quantile", "sizeField": null, "sizeScale": "linear" } }, { "id": "5f4oogg", "type": "arc", "config": { "dataId": "2vy7gdzae", "label": "origin -> dest arc", "color": [82, 151, 218], "highlightColor": [252, 242, 26, 255], "columns": { "lat0": "origin_lat", "lng0": "origin_long", "lat1": "dest_lat", "lng1": "dest_long" }, "isVisible": true, "visConfig": { "opacity": 0.8, "thickness": 2, "colorRange": { "name": "Global Warming", "type": "sequential", "category": "Uber", "colors": ["#5A1846", "#900C3F", "#C70039", "#E3611C", "#F1920E", "#FFC300"] }, "sizeRange": [0, 10], "targetColor": null }, "hidden": false, "textLabel": [{ "field": null, "color": [255, 255, 255], "size": 18, "offset": [0, 0], "anchor": "start", "alignment": "center" }] }, "visualChannels": { "colorField": null, "colorScale": "quantile", "sizeField": null, "sizeScale": "linear" } }], "interactionConfig": { "tooltip": { "fieldsToShow": { "2vy7gdzae": [{ "name": "origin", "format": null }, { "name": "origin_iata", "format": null }, { "name": "destination", "format": null }, { "name": "destination_iata", "format": null }, { "name": "type", "format": null }] }, "compareMode": true, "compareType": "relative", "enabled": true }, "brush": { "size": 0.5, "enabled": false }, "geocoder": { "enabled": false }, "coordinate": { "enabled": false } }, "layerBlending": "normal", "splitMaps": [], "animationConfig": { "currentTime": null, "speed": 1 }
+            "filters": [{ "dataId": ["2vy7gdzae"], "id": "vpzrndmst", "name": ["type"], "type": "multiSelect", "value": ["Domestic"], "enlarged": false, "plotType": "histogram", "animationWindow": "free", "yAxis": null, "speed": 1 }], "layers": [{ "id": "cr14bm", "type": "point", "config": { "dataId": "2vy7gdzae", "label": "origin", "color": [255, 248, 51], "highlightColor": [252, 242, 26, 255], "columns": { "lat": "origin_lat", "lng": "origin_long", "altitude": null }, "isVisible": true, "visConfig": { "radius": 15, "fixedRadius": false, "opacity": 0.8, "outline": false, "thickness": 2, "strokeColor": null, "colorRange": { "name": "Global Warming", "type": "sequential", "category": "Uber", "colors": ["#5A1846", "#900C3F", "#C70039", "#E3611C", "#F1920E", "#FFC300"] }, "strokeColorRange": { "name": "Global Warming", "type": "sequential", "category": "Uber", "colors": ["#5A1846", "#900C3F", "#C70039", "#E3611C", "#F1920E", "#FFC300"] }, "radiusRange": [0, 50], "filled": true }, "hidden": false, "textLabel": [] }, "visualChannels": { "colorField": null, "colorScale": "quantile", "strokeColorField": null, "strokeColorScale": "quantile", "sizeField": null, "sizeScale": "linear" } }, { "id": "fwq86uk", "type": "point", "config": { "dataId": "2vy7gdzae", "label": "destination", "color": [248, 149, 112], "highlightColor": [252, 242, 26, 255], "columns": { "lat": "dest_lat", "lng": "dest_long", "altitude": null }, "isVisible": true, "visConfig": { "radius": 10, "fixedRadius": false, "opacity": 0.8, "outline": false, "thickness": 2, "strokeColor": null, "colorRange": { "name": "Global Warming", "type": "sequential", "category": "Uber", "colors": ["#5A1846", "#900C3F", "#C70039", "#E3611C", "#F1920E", "#FFC300"] }, "strokeColorRange": { "name": "Global Warming", "type": "sequential", "category": "Uber", "colors": ["#5A1846", "#900C3F", "#C70039", "#E3611C", "#F1920E", "#FFC300"] }, "radiusRange": [0, 50], "filled": true }, "hidden": false, "textLabel": [{ "field": { "name": "destination_iata", "type": "string" }, "color": [255, 255, 255], "size": 18, "offset": [0, 0], "anchor": "start", "alignment": "center" }] }, "visualChannels": { "colorField": null, "colorScale": "quantile", "strokeColorField": null, "strokeColorScale": "quantile", "sizeField": null, "sizeScale": "linear" } }, { "id": "5f4oogg", "type": "arc", "config": { "dataId": "2vy7gdzae", "label": "origin -> destination arc", "color": [82, 151, 218], "highlightColor": [252, 242, 26, 255], "columns": { "lat0": "origin_lat", "lng0": "origin_long", "lat1": "dest_lat", "lng1": "dest_long" }, "isVisible": true, "visConfig": { "opacity": 0.8, "thickness": 2, "colorRange": { "name": "Global Warming", "type": "sequential", "category": "Uber", "colors": ["#5A1846", "#900C3F", "#C70039", "#E3611C", "#F1920E", "#FFC300"] }, "sizeRange": [0, 10], "targetColor": null }, "hidden": false, "textLabel": [{ "field": null, "color": [255, 255, 255], "size": 18, "offset": [0, 0], "anchor": "start", "alignment": "center" }] }, "visualChannels": { "colorField": null, "colorScale": "quantile", "sizeField": null, "sizeScale": "linear" } }], "interactionConfig": { "tooltip": { "fieldsToShow": { "2vy7gdzae": [{ "name": "origin", "format": null }, { "name": "origin_iata", "format": null }, { "name": "destination", "format": null }, { "name": "destination_iata", "format": null }, { "name": "type", "format": null }] }, "compareMode": true, "compareType": "relative", "enabled": true }, "brush": { "size": 0.5, "enabled": false }, "geocoder": { "enabled": false }, "coordinate": { "enabled": false } }, "layerBlending": "additive", "splitMaps": [], "animationConfig": { "currentTime": null, "speed": 1 }
           }, "mapState": { "bearing": 5.566844919786105, "dragRotate": true, "latitude": 15.0727086, "longitude": 105.2194808, "pitch": 38.481600456024154, "zoom": 5, "isSplit": false }, "mapStyle": { "styleType": "dark", "topLayerGroups": {}, "visibleLayerGroups": { "label": true, "road": false, "border": true, "building": true, "water": true, "land": true, "3d building": true }, "threeDBuildingColor": [9.665468314072013, 17.18305478057247, 31.1442867897876], "mapStyles": {} }
         }
       };
